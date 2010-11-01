@@ -31,11 +31,15 @@ SMAW.createServer = function () {
         } else {
             SMAW.loadStaticFile(uri, response);
         }
-    }).listen(8080);
+    }).listen(80);
 };
 
 SMAW.loadStaticFile = function (uri, response) {
     var filename = SMAW.modules.path.join(process.cwd(), uri);
+    SMAW.modules.sys.puts(filename);
+    if ((filename === '') || (filename === '/')) {
+        filename = "index.html";
+    }
     
     SMAW.modules.path.exists(filename, function (exists) {
 		if (!exists) {
