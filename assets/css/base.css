@@ -1,0 +1,346 @@
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:focus,
+a:hover {
+    text-decoration: underline;
+}
+
+a:focus span,
+a:hover span {
+    text-decoration: underline;
+}
+
+a img {
+    border: none;
+}
+
+body {
+    background: transparent url(../img/bg.png) left top repeat;
+    color: #666;
+    font-family: Museo;
+    font-size: 62.5%;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+h2 {
+    color: #333;
+    font-size: 2em;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    font-size: 1.5em;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-size: 1.5em;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+#contact {
+    border-bottom: 1px dotted #e5e5e5;
+    padding: 1.7em 0 0 0;
+    width: 100%;
+}
+
+#contact h2 {
+    left: -9999px;
+    position: absolute;
+}
+
+#contact p {
+    font-size: 2em;
+    margin: 0 1.01% 0.835em 1.01%;
+}
+
+#flickr ul {
+    left: 1.634%;
+    position: relative;
+}
+
+#flickr li {
+    float: left;
+    background-color: #ccc;
+    height: 9em;
+    margin: 0 1.634% 1.5em 0;
+    overflow: hidden;
+    padding: 0;
+    width: 14.706%;
+}
+
+#intro h1 {
+    color: #333;
+    font-size: 5em;
+    font-weight: normal;
+    margin: 0 1.01% 0.16em 1.01%;
+    padding: 0.14em 0 0 0;
+}
+
+#intro p {
+    font-size: 2.5em;
+    margin: 0 1.01% 1em 1.01%;
+    line-height: 1.2;
+}
+
+#lastFm img {
+    left: 4.31%;
+    position: absolute;
+    top: 0;
+    width: 12.931%;
+}
+
+#lastFm li {
+    position: relative;
+    padding-left: 19.048%;
+}
+
+#tumblr ul {
+    left: 2.646%;
+    position: relative;
+}
+
+#tumblr li {
+    float: left;
+    height: 10.5em;
+    overflow: hidden;
+    margin: 0 2.646% 2.5em 0;
+    width: 44.973%;
+}
+
+#modalOverlay {
+    background: #000;
+    display: none;
+    left: 0;
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    z-index:49;
+}
+
+#work {
+    border-bottom:1px dotted #E5E5E5;
+}
+
+#work h3 {
+    font-size: 1.5em;
+}
+
+#work img {
+    margin: 0 0 0.75em 0;
+    max-width: 210px;
+    width: 100%;
+}
+
+#work li {
+    float: left;
+    margin: 0 3.535% 2.2em 0;
+    overflow: hidden;
+    padding: 0;
+    width: 21.212%;
+}
+
+#work span {
+    display: block;
+}
+
+#work ul {
+    left: 1.01%;
+    margin: 0 0 -0.6em 0;
+    position: relative;
+}
+
+#workModal {
+    background: #FFFFFF;
+    border: 1px solid #000;
+    display: none;
+    min-height: 39em;
+    padding: 0;
+    position: fixed;
+    width: 61.803%;
+    z-index: 50;
+}
+
+#workModal h3 {
+    color: #333;
+    font-size: 2.5em;
+    margin: 0 0 0 65%;
+    padding: 0.88em 0 0 0;
+    width: 33.75%;
+}
+
+#workModal img {
+    left: 1.25%;
+    max-width: 490px;
+    position: absolute;
+    top: 1em;
+    width: 61.25%;
+}
+
+#workModal p {
+    line-height: 1.333;
+    margin: 0 0 1.333em 65%;
+    width: 33.75%;
+}
+
+#workModal .date {
+    margin-bottom: 1em;
+}
+
+#workModal .url {
+    margin-bottom: 0;
+}
+
+.close {
+    background: transparent url('../img/close.png') left top no-repeat;
+    border: none;
+    height: 14px;
+    position: absolute;
+    right: 1.25%;
+    text-indent: -9999px;
+    top: 1em;
+    width: 14px;
+}
+
+.hero {
+    border-bottom: 1px dotted #e5e5e5;
+}
+
+.js {
+    opacity: 0;
+}
+
+.js #work p {
+    display: none;
+}
+
+.page {
+    margin: 0 auto;
+    max-width: 1600px;
+    min-width: 800px;
+    width: 100%;
+}
+
+.primary {
+    border: 1px dotted #e5e5e5;
+    float: left;
+    width: 62%;
+}
+
+.primary h2 {
+    margin: 0 1.01% 0.55em 1.01%;
+    padding: 0.75em 0 0 0;
+}
+
+.primary .primary {
+    border-bottom: none;
+    border-left: none;
+    border-top: none;
+}
+
+.primary .primary h2 {
+    margin: 0 1.634% 0.55em 1.634%;
+    padding: 0.75em 0 0 0;
+}
+
+.primary .secondary {
+    border-bottom: none;
+    border-left: none;
+    border-top: none;
+}
+
+.primary .secondary h2 {
+    padding: 0.75em 0 0 0;
+    margin: 0 2.985% 0.55em 2.985%
+}
+
+.primary .secondary h3 {
+    line-height: 1.333;
+    margin: 0 2.985% 0 2.985%
+}
+
+.primary .secondary p {
+    line-height: 1.333;
+    margin: 0 2.985% 1.33em 2.985%
+}
+
+.primary .section {
+    border: none;
+}
+
+.secondary {
+    float: left;
+    width: 37%;
+}
+
+.secondary .primary {
+    border-bottom: none;
+    border-left: none;
+    border-top: none;
+}
+
+.secondary .primary h2 {
+    padding: 0.75em 0 0 0;
+    margin: 0 3.067% 0.55em 3.067%
+}
+
+.secondary .primary h3 {
+    line-height: 1.333;
+    margin: 0 3.067% 0 3.067%
+}
+
+.secondary .primary p {
+    line-height: 1.333;
+    margin: 0 3.067% 1.33em 3.067%
+}
+
+.secondary .secondary {
+    border-bottom: none;
+    border-left: none;
+    border-top: none;
+}
+
+.secondary .secondary h2 {
+    padding: 0.75em 0 0 0;
+    margin: 0 4.717% 0.55em 4.717%
+}
+
+.secondary .secondary h3 {
+    line-height: 1.333;
+    margin: 0 4.717% 0 4.717%
+}
+
+.secondary .secondary p {
+    line-height: 1.333;
+    margin: 0 4.717% 1.33em 4.717%
+}
+
+.secondary .primary .section {
+    border-bottom: 1px dotted #e5e5e5;
+}
+
+.section {
+    border-bottom: 1px dotted #e5e5e5;
+    opacity: 0;
+}
