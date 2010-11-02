@@ -1,5 +1,5 @@
 /*!
- * Uncocatenated and unminified code can be viewed at http://github.com/theSmaw/bensmawfield.com
+ * Unconcatenated and unminified code can be viewed at http://github.com/theSmaw/bensmawfield.com
  */
 
 /*!
