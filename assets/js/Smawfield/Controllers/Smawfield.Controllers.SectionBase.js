@@ -10,7 +10,7 @@ Smawfield.Controllers.SectionBase = function (rootNode, sectionName) {
 
 Smawfield.Controllers.SectionBase.prototype.renderData = function (response) {
     if (response) {
-        this.view.render(JSON.parse(response), this.sectionName);
+        this.view.render(jQuery.parseJSON(response), this.sectionName);
     }
 };
 
