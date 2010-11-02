@@ -31,7 +31,7 @@ SMAW.createServer = function () {
         } else {
             SMAW.loadStaticFile(uri, response);
         }
-    }).listen(80);
+    }).listen(8080);
 };
 
 SMAW.loadStaticFile = function (uri, response) {
@@ -39,6 +39,8 @@ SMAW.loadStaticFile = function (uri, response) {
     SMAW.modules.sys.puts(filename);
     if ((filename === '') || (filename === '/')) {
         filename = "index.html";
+    } else if (filename === '/root/') {
+        filename = '/root/index.html';
     }
     
     SMAW.modules.path.exists(filename, function (exists) {
@@ -126,10 +128,12 @@ SMAW.serveDynamicContent = {
                 
             if (yqlResponse.query.results) {
                 responseItems = yqlResponse.query.results.lfm.recenttracks.track;
-                length = (responseItems.length < 9) ? responseItems.length : 8;
-                for (i = 0; i < length; i += 1) {
-                    current = responseItems[i];
-                    items.push('<h3>' + current.artist.content + '</h3><p>' + current.name + '</p><img alt="" src="' + current.image[0].content + '" />');
+                if (responseItems) {
+                    length = (responseItems.length < 9) ? responseItems.length : 8;
+                    for (i = 0; i < length; i += 1) {
+                        current = responseItems[i];
+                        items.push('<h3>' + current.artist.content + '</h3><p>' + current.name + '</p><img alt="" src="' + current.image[0].content + '" />');
+                    }
                 }
             }
             SMAW.serveDynamicContent.serve(response, JSON.stringify({
