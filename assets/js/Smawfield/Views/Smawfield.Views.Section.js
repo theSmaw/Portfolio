@@ -4,17 +4,16 @@ Smawfield.Views.Section = function (controller, rootNode) {
     this.setUp();
     this.controller = controller;
     this.rootNode = rootNode;
-}
+};
 
 Smawfield.Views.Section.prototype = new Smawfield.Views.Base();
 
 Smawfield.Views.Section.prototype.createHeading = function (heading) {
     this.rootNode.prepend('<h2>' + heading + '</h2>');
-}
+};
 
 Smawfield.Views.Section.prototype.createList = function (items) {
     var i,
-        item = $('<li></li>'),
         length = items.length,
         list = $('<ul></ul>');
     
@@ -22,7 +21,7 @@ Smawfield.Views.Section.prototype.createList = function (items) {
         list.append('<li>' + items[i] + '</li>');
     }
     this.rootNode.append(list);
-}
+};
 
 Smawfield.Views.Section.prototype.render = function (data, heading) {
     if (data.items.length) {
@@ -32,4 +31,4 @@ Smawfield.Views.Section.prototype.render = function (data, heading) {
             opacity: 1
         }, 750);
     }
-}
+};

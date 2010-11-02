@@ -1,4 +1,8 @@
 /*!
+ * Uncocatenated and unminified code can be viewed at http://github.com/theSmaw/bensmawfield.com
+ */
+
+/*!
  * jQuery JavaScript Library v1.4.2
  * http://jquery.com/
  *
@@ -162,13 +166,17 @@ jQuery.scope = function (scope, f) {
 		f.apply(scope, arguments);
 	};
 };
+
+/* Smawfield.js */
 Smawfield = {};
 
-$(document).ready(function invokeControllers () {
+$(document).ready(function invokeControllers() {
     Smawfield.Controllers.Page();
     Smawfield.Controllers.Sections();
     Smawfield.Controllers.Work();
 });
+
+/* Smawfield.Data.js */
 Smawfield.Data = {
     
     getMetaFromClassName : function (metaName, className) {
@@ -339,9 +347,10 @@ Smawfield.Views.Base.prototype.getController = function () {
         return {};
     }
 };
-Smawfield.Views.ModalBase = function () {};
 
-Smawfield.Views.ModalBase.prototype = new Smawfield.Views.Base;
+/* Smawfield.Views.ModalBase */Smawfield.Views.ModalBase = function () {};
+
+Smawfield.Views.ModalBase.prototype = new Smawfield.Views.Base();
 
 Smawfield.Views.ModalBase.prototype.setUp = function () {
     Smawfield.Views.Base.prototype.setUp.call(this);
@@ -354,7 +363,7 @@ Smawfield.Views.ModalBase.prototype.setUp = function () {
     
     this.rootNode.bind('click', $.scope(this, this.close_click));
     this.showSpinner = this.rootNode.hasClass("spinner");
-    if (this.spinner == null && this.showSpinner) {
+    if (!this.spinner && this.showSpinner) {
         this.prepareSpinner();
     }
 };
@@ -368,7 +377,7 @@ Smawfield.Views.ModalBase.prototype.createOverlay = function () {
 };
 
 Smawfield.Views.ModalBase.prototype.show = function () {
-    if (this.showSpinner && this.spinner != null && this.spinnerInjected !== true) {
+    if (this.showSpinner && this.spinner && this.spinnerInjected !== true) {
         this.rootNode.find(".body p").append(this.spinner);
         this.spinnerInjected = true;
     }
@@ -378,35 +387,38 @@ Smawfield.Views.ModalBase.prototype.show = function () {
     this.sizeAndPosition();
 };
 
-Smawfield.Views.ModalBase.prototype.delayedShow = function() {
+Smawfield.Views.ModalBase.prototype.delayedShow = function () {
     this.overlay.show();
     this.showDelay = setTimeout($.scope(this, this.show), 350);
 };
 
 Smawfield.Views.ModalBase.prototype.sizeAndPosition = function () {
-    if (this.visible === false) return;
-    var top = Math.floor($(window).height()/2) - Math.floor(this.rootNode.height()/2),
-        left = Math.floor($(window).width()/2) - Math.floor(this.rootNode.width()/2);
+    if (this.visible === false) {
+        
+        return;
+    }
+    var top = Math.floor($(window).height() / 2) - Math.floor(this.rootNode.height() / 2),
+        left = Math.floor($(window).width() / 2) - Math.floor(this.rootNode.width() / 2);
 
-    this.overlay.css( {
+    this.overlay.css({
         width: $(window).width(),
         height: $(document).height(),
         display: "block"
-    } );
-    this.rootNode.css( {
+    });
+    this.rootNode.css({
         top: top,
         left: left
-    } );
+    });
 };
 
-Smawfield.Views.ModalBase.prototype.hide = function() {
+Smawfield.Views.ModalBase.prototype.hide = function () {
     clearTimeout(this.showDelay);
     this.overlay.hide();
     this.rootNode.detach();
     this.visible = false;
 };
 
-Smawfield.Views.ModalBase.prototype.close_click = function(e) {
+Smawfield.Views.ModalBase.prototype.close_click = function (e) {
     var target = $(e.target);
     
     if (target.hasClass('close')) {
@@ -417,14 +429,14 @@ Smawfield.Views.ModalBase.prototype.close_click = function(e) {
     }
 };
 
-Smawfield.Views.ModalBase.prototype.prepareSpinner = function() {
+Smawfield.Views.ModalBase.prototype.prepareSpinner = function () {
     var spinnerURL = $("#spinnerURL");
     if (spinnerURL.length > 0) {
         Smawfield.Views.ModalBase.prototype.spinner = spinnerURL.text();
         spinnerURL.remove();
-        setTimeout( function loadSpinner() {
+        setTimeout(function loadSpinner() {
             Smawfield.Views.ModalBase.prototype.spinner = $("<img class=\"spinner\" src=\"" + Smawfield.Views.ModalBase.prototype.spinner + "\" alt=\"\" />");
-        }, 250 );
+        }, 250);
     }
 };
 
@@ -434,7 +446,6 @@ Smawfield.Views = Smawfield.Views || {};
 Smawfield.Views.Page = function (controller, rootNode) {
     this.controller = controller;
     this.rootNode = rootNode;
-    this.rootNode.addClass('js');
     this.setUp();
     this.window = $(window);
     this.width = this.getWidth();
@@ -455,8 +466,13 @@ Smawfield.Views.Page.prototype.resize = function () {
 };
 
 Smawfield.Views.Page.prototype.reveal = function () {
-    this.rootNode.animate({
-        opacity : 1
+    var page = this.rootNode.find('div.page');
+    
+    this.rootNode.addClass('loaded');
+    page.css({
+        'display' : 'block'
+    }).animate({
+        'opacity' : 1
     }, 750);
 };
 
@@ -476,17 +492,16 @@ Smawfield.Views.Section = function (controller, rootNode) {
     this.setUp();
     this.controller = controller;
     this.rootNode = rootNode;
-}
+};
 
 Smawfield.Views.Section.prototype = new Smawfield.Views.Base();
 
 Smawfield.Views.Section.prototype.createHeading = function (heading) {
     this.rootNode.prepend('<h2>' + heading + '</h2>');
-}
+};
 
 Smawfield.Views.Section.prototype.createList = function (items) {
     var i,
-        item = $('<li></li>'),
         length = items.length,
         list = $('<ul></ul>');
     
@@ -494,7 +509,7 @@ Smawfield.Views.Section.prototype.createList = function (items) {
         list.append('<li>' + items[i] + '</li>');
     }
     this.rootNode.append(list);
-}
+};
 
 Smawfield.Views.Section.prototype.render = function (data, heading) {
     if (data.items.length) {
@@ -504,7 +519,7 @@ Smawfield.Views.Section.prototype.render = function (data, heading) {
             opacity: 1
         }, 750);
     }
-}
+};
 
 /* Smawfield.Views.Work.js */
 Smawfield.Views = Smawfield.Views || {};
@@ -515,13 +530,13 @@ Smawfield.Views.Work = function (controller, rootNode) {
     this.rootNode = rootNode;
     this.createModalContainer();
     this.rootNode.bind('click', $.scope(this, this.launchModal));
-}
+};
 
 Smawfield.Views.Work.prototype = new Smawfield.Views.Base();
 
 Smawfield.Views.Work.prototype.createModalContainer = function () {
     $('body').append('<div id="workModal"></div>');
-}
+};
 
 Smawfield.Views.Work.prototype.launchModal = function (e) {
     var target = $(e.target).closest('a', this.rootNode);
@@ -531,7 +546,7 @@ Smawfield.Views.Work.prototype.launchModal = function (e) {
         this.controller.launchModal(target.closest('li'));
     }
     e.preventDefault();
-}
+};
 
 /* Smawfield.Views.WorkModal.js */
 Smawfield.Views = Smawfield.Views || {};
@@ -588,7 +603,7 @@ Smawfield.Controllers.SectionBase = function (rootNode, sectionName) {
     this.sectionName = sectionName;
     this.view = new Smawfield.Views.Section(this, this.rootNode);
     this.getData();
-    this.view.events.bind()
+    this.view.events.bind();
 };
 
 Smawfield.Controllers.SectionBase.prototype.renderData = function (response) {
@@ -614,13 +629,14 @@ Smawfield.Controllers.Sections = function (rootNode) {
     
     this.sections = $('.section');
 
-    for (i = this.sections.length - 1; i >= 0; i--) {
+    for (i = this.sections.length - 1; i >= 0; i -= 1) {
         section = this.sections.eq(i);
         sectionClass = section.attr('class');
         sectionName = Smawfield.Data.getMetaFromClassName('name', sectionClass);
         Smawfield.Controllers.Sections[sectionName] = new Smawfield.Controllers.SectionBase(section, sectionName);
     }
 };
+
 
 /* Smawfield.Controllers.Work.js */
 Smawfield.Controllers = Smawfield.Controllers || {};
@@ -633,5 +649,5 @@ Smawfield.Controllers.Work = function () {
     
     this.launchModal = function (el) {
         this.modalView.launch(el);  
-    }
+    };
 };

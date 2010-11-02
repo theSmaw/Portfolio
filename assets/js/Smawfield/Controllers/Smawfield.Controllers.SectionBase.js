@@ -5,7 +5,7 @@ Smawfield.Controllers.SectionBase = function (rootNode, sectionName) {
     this.sectionName = sectionName;
     this.view = new Smawfield.Views.Section(this, this.rootNode);
     this.getData();
-    this.view.events.bind()
+    this.view.events.bind();
 };
 
 Smawfield.Controllers.SectionBase.prototype.renderData = function (response) {

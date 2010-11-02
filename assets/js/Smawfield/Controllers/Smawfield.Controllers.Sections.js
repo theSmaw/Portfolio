@@ -8,7 +8,7 @@ Smawfield.Controllers.Sections = function (rootNode) {
     
     this.sections = $('.section');
 
-    for (i = this.sections.length - 1; i >= 0; i--) {
+    for (i = this.sections.length - 1; i >= 0; i -= 1) {
         section = this.sections.eq(i);
         sectionClass = section.attr('class');
         sectionName = Smawfield.Data.getMetaFromClassName('name', sectionClass);

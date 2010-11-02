@@ -6,13 +6,13 @@ Smawfield.Views.Work = function (controller, rootNode) {
     this.rootNode = rootNode;
     this.createModalContainer();
     this.rootNode.bind('click', $.scope(this, this.launchModal));
-}
+};
 
 Smawfield.Views.Work.prototype = new Smawfield.Views.Base();
 
 Smawfield.Views.Work.prototype.createModalContainer = function () {
     $('body').append('<div id="workModal"></div>');
-}
+};
 
 Smawfield.Views.Work.prototype.launchModal = function (e) {
     var target = $(e.target).closest('a', this.rootNode);
@@ -22,4 +22,4 @@ Smawfield.Views.Work.prototype.launchModal = function (e) {
         this.controller.launchModal(target.closest('li'));
     }
     e.preventDefault();
-}
+};

@@ -17,17 +17,17 @@ SMAW.createServer = function () {
         var uri = SMAW.modules.url.parse(request.url).pathname;
         
         if (uri === '/Flickr') {
-            SMAW.serveDynamicContent['flickr'](response);
+            SMAW.serveDynamicContent.flickr(response);
         } else if (uri === '/Delicious') {
-            SMAW.serveDynamicContent['delicious'](response);
+            SMAW.serveDynamicContent.delicious(response);
         } else if (uri === '/Twitter') {
-            SMAW.serveDynamicContent['twitter'](response);
+            SMAW.serveDynamicContent.twitter(response);
         } else if (uri === '/Tumblr') {
-            SMAW.serveDynamicContent['tumblr'](response);
+            SMAW.serveDynamicContent.tumblr(response);
         } else if (uri === '/Posterous') {
-            SMAW.serveDynamicContent['posterous'](response);
+            SMAW.serveDynamicContent.posterous(response);
         } else if (uri === '/LastFM') {
-            SMAW.serveDynamicContent['lastfm'](response);
+            SMAW.serveDynamicContent.lastfm(response);
         } else {
             SMAW.loadStaticFile(uri, response);
         }
@@ -79,8 +79,7 @@ SMAW.createServer();
 SMAW.serveDynamicContent = {
     
     delicious : function (response) {
-        
-        new SMAW.modules.yql.exec('select * from rss where url="http://feeds.delicious.com/v2/rss/bensmawfield?count=8"', function (yqlResponse) {
+        var yql = new SMAW.modules.yql.exec('select * from rss where url="http://feeds.delicious.com/v2/rss/bensmawfield?count=8"', function (yqlResponse) {
             var current,
                 i,
                 items = [],
@@ -98,8 +97,7 @@ SMAW.serveDynamicContent = {
     },
     
     flickr : function (response) {
-        
-        new SMAW.modules.yql.exec('select * from flickr.people.publicphotos(0,30) where user_id="21099545@N07"', function (yqlResponse) {
+        var yql = new SMAW.modules.yql.exec('select * from flickr.people.publicphotos(0,30) where user_id="21099545@N07"', function (yqlResponse) {
             var current,
                 i,
                 items = [],
@@ -117,8 +115,7 @@ SMAW.serveDynamicContent = {
     },
     
     lastfm : function (response) {
-        
-        new SMAW.modules.yql.exec('select * from lastfm.recenttracks where user="bensmawfield" AND api_key="2f8fdf39b34897d01810fce2213c8c56"', function (yqlResponse) {
+        var yql = new SMAW.modules.yql.exec('select * from lastfm.recenttracks where user="bensmawfield" AND api_key="2f8fdf39b34897d01810fce2213c8c56"', function (yqlResponse) {
             var current,
                 description,
                 i,
@@ -143,8 +140,7 @@ SMAW.serveDynamicContent = {
     },  
     
     posterous : function (response) {
-        
-        new SMAW.modules.yql.exec('select * from rss where url="http://feeds.feedburner.com/PosterousOfSmaw?format=xml"', function (yqlResponse) {
+        var yql = new SMAW.modules.yql.exec('select * from rss where url="http://feeds.feedburner.com/PosterousOfSmaw?format=xml"', function (yqlResponse) {
             var current,
                 description,
                 i,
@@ -171,8 +167,7 @@ SMAW.serveDynamicContent = {
     },  
     
     tumblr : function (response) {
-        
-        new SMAW.modules.yql.exec('select * from tumblr.posts where username="populr"', function (yqlResponse) {
+        var yql = new SMAW.modules.yql.exec('select * from tumblr.posts where username="populr"', function (yqlResponse) {
             var current,
                 i,
                 items = [],
@@ -194,8 +189,7 @@ SMAW.serveDynamicContent = {
     },  
     
     twitter : function (response) {
-        
-        new SMAW.modules.yql.exec('select * from twitter.user.timeline(0, 10) where id="thesmaw"', function (yqlResponse) {
+        var yql = new SMAW.modules.yql.exec('select * from twitter.user.timeline(0, 10) where id="thesmaw"', function (yqlResponse) {
             var current,
                 i,
                 items = [],
@@ -222,42 +216,5 @@ SMAW.serveDynamicContent = {
         response.end();    
     }
 };
-
-
-
-
-
-
-/*
-
-
-var twitter_client = http.createClient(80, "api.twitter.com");
-
-var tweet_emitter = new events.EventEmitter();
-
-function get_tweets() {
-	var request = twitter_client.request("GET", "/1/statuses/public_timeline.json", {"host": "api.twitter.com"});
-
-	request.addListener("response", function(response) {
-		var body = "";
-		response.addListener("data", function(data) {
-			body += data;
-		});
-
-		response.addListener("end", function() {
-			var tweets = JSON.parse(body);
-			if(tweets.length > 0) {
-				tweet_emitter.emit("tweets", tweets);
-			}
-		});
-	});
-
-	request.end();
-}
-
-setInterval(get_tweets, 5000);
- */
-
-
 
 SMAW.modules.sys.puts("Server running at http://localhost:8080/");

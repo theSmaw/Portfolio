@@ -8,5 +8,5 @@ Smawfield.Controllers.Work = function () {
     
     this.launchModal = function (el) {
         this.modalView.launch(el);  
-    }
+    };
 };
