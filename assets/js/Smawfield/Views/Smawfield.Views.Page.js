@@ -3,7 +3,6 @@ Smawfield.Views = Smawfield.Views || {};
 Smawfield.Views.Page = function (controller, rootNode) {
     this.controller = controller;
     this.rootNode = rootNode;
-    this.rootNode.addClass('js');
     this.setUp();
     this.window = $(window);
     this.width = this.getWidth();
@@ -24,8 +23,13 @@ Smawfield.Views.Page.prototype.resize = function () {
 };
 
 Smawfield.Views.Page.prototype.reveal = function () {
-    this.rootNode.animate({
-        opacity : 1
+    var page = this.rootNode.find('div.page');
+    
+    this.rootNode.addClass('loaded');
+    page.css({
+        'display' : 'block'
+    }).animate({
+        'opacity' : 1
     }, 750);
 };
 
