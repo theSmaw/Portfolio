@@ -139,8 +139,20 @@ section {
     background-position: -120px -120px;
 }
 
+.mickJagger {
+    background-position: -120px -820px;
+}
+
 .playfish {
     background-position: -360px -120px;
+}
+
+.someone {
+    background-position: -240px -820px;
+}
+
+.someoneElse {
+    background-position: -360px -820px;
 }
 
 .sonyComputerEntertainmentEurope {
